@@ -12,13 +12,5 @@ import {Profile} from "./data/interfaces/profile.interface";
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'frontend';
-  profileService = inject(ProfileService)
-  profiles: Profile[] = []
 
-  constructor() {
-    this.profileService.getTestAccounts().subscribe(val => {
-      this.profiles = val
-    })
-  }
 }
