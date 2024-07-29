@@ -3,9 +3,9 @@ import {
   HttpInterceptorFn,
   HttpRequest,
 } from '@angular/common/http';
-import {inject} from '@angular/core';
-import {AuthService} from './auth.service';
-import {catchError, switchMap, throwError} from 'rxjs';
+import { inject } from '@angular/core';
+import { AuthService } from './auth.service';
+import { catchError, switchMap, throwError } from 'rxjs';
 
 let isRefreshing = false;
 
@@ -46,5 +46,5 @@ const refreshAndProceed = (
 };
 
 const addToken = (req: HttpRequest<any>, token: string) => {
-  return req.clone({setHeaders: {Authorization: `Bearer ${token}`}});
+  return req.clone({ setHeaders: { Authorization: `Bearer ${token}` } });
 };
