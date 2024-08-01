@@ -1,1 +1,6 @@
-<p>subscriber-card works!</p>
+<img
+  class="subscriber-avatar"
+  [src]="profile.avatar_url | imgUrl"
+  [alt]="profile.lastname"
+/>
+<strong class="subtitle">{{ profile.firstname }} {{ profile.lastname }}</strong>
