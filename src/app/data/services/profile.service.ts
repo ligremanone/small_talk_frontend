@@ -19,15 +19,19 @@ export class ProfileService {
     return this.http.get<Profile[]>(`${this.baseUrl}account/accounts`);
   }
 
-  getSubscribersShortList() {
+  getSubscribersShortList(subsAmount = 3) {
     return this.http
       .get<Pageble<Profile>>(`${this.baseUrl}account/followers`)
-      .pipe(map((res) => res.items.slice(0, 3)));
+      .pipe(map((res) => res.items.slice(0, subsAmount)));
   }
 
   getMe() {
     return this.http
-      .get<Profile>(`${this.baseUrl}auth/me`)
+      .get<Profile>(`${this.baseUrl}account/me`)
       .pipe(tap((res) => this.me.set(res)));
+  }
+
+  getAccount(id: string) {
+    return this.http.get<Profile>(`${this.baseUrl}account/${id}`);
   }
 }

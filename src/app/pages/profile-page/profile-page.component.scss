@@ -1,0 +1,84 @@
+.profile-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+.to-settings-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--dark-color);
+}
+
+.to-settings-btn {
+  width: 260px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-page__body {
+  display: grid;
+  grid-gap: 64px;
+  grid-template-columns: 1fr 350px;
+  padding: 24px;
+}
+
+.subscriber-avatar-btn {
+  img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+  }
+}
+
+.subscribers-wrapper {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.sub-and-count {
+  display: flex;
+  gap: 16px;
+}
+
+.sub-count {
+  text-align: center;
+  height: 26px;
+  width: 18px;
+  color: var(--dark-color);
+  background-color: #98e9ab;
+}
+
+.to-subscribers-search {
+  border-radius: 50%;
+  background: var(--light-color);
+  width: 20px;
+  height: 20px;
+  position: relative;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 10px;
+    background: var(--dark-color);
+    top: 50%;
+    left: 50%;
+  }
+  &:before {
+    transform: translateY(-50%) translateX(-50%);
+  }
+  &:after {
+    transform: translateY(-50%) translateX(-50%) rotate(90deg);
+  }
+}
+
+.stack-wrapper {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+}
