@@ -1,14 +1,14 @@
-import { Component, inject } from '@angular/core';
-import { ProfileHeaderComponent } from '../../common ui/profile-header/profile-header.component';
-import { ProfileService } from '../../data/services/profile.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { switchMap } from 'rxjs';
-import { toObservable } from '@angular/core/rxjs-interop';
-import { AsyncPipe, NgForOf } from '@angular/common';
-import { SvgIconComponent } from '../../common ui/svg-icon/svg-icon.component';
-import { SubscriberCardComponent } from '../../common ui/sidebar/subscriber-card/subscriber-card.component';
-import { ImgUrlPipe } from '../../helpers/pipes/img-url.pipe';
-import { PostFeedComponent } from './post-feed/post-feed.component';
+import {Component, inject} from '@angular/core';
+import {ProfileHeaderComponent} from '../../common ui/profile-header/profile-header.component';
+import {ProfileService} from '../../data/services/profile.service';
+import {ActivatedRoute, RouterLink} from '@angular/router';
+import {map, switchMap} from 'rxjs';
+import {toObservable} from '@angular/core/rxjs-interop';
+import {AsyncPipe, NgForOf} from '@angular/common';
+import {SvgIconComponent} from '../../common ui/svg-icon/svg-icon.component';
+import {SubscriberCardComponent} from '../../common ui/sidebar/subscriber-card/subscriber-card.component';
+import {ImgUrlPipe} from '../../helpers/pipes/img-url.pipe';
+import {PostFeedComponent} from './post-feed/post-feed.component';
 
 @Component({
   selector: 'app-profile-page',
@@ -30,9 +30,10 @@ export class ProfilePageComponent {
   profileService = inject(ProfileService);
   route = inject(ActivatedRoute);
   me$ = toObservable(this.profileService.me);
+  count$ = this.profileService.getMe().pipe(map((res) => res.subscribers_amount));
   subscribers$ = this.profileService.getSubscribersShortList(5);
   profile$ = this.route.params.pipe(
-    switchMap(({ id }) => {
+    switchMap(({id}) => {
       if (id === 'me') return this.me$;
       return this.profileService.getAccount(id);
     }),

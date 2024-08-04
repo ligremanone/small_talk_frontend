@@ -7,6 +7,7 @@
   --primary-color: #ae7aff;
   --gray-color: #5f646d;
   --dark-hover-color: #161616;
+  --light-transparent-color: #FAF4F0;
 }
 
 *,
@@ -52,6 +53,7 @@ body {
 
 .btn-shadow {
   position: relative;
+
   &:before {
     content: "";
     position: absolute;
@@ -107,7 +109,7 @@ body {
   display: block;
 }
 
-.st-input {
+.tt-input {
   width: 100%;
   margin-top: 8px;
   display: block;
@@ -126,4 +128,40 @@ body {
   font-size: 12px;
   font-weight: 500;
   line-height: 16px;
+}
+
+.tt-form-label {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+}
+
+.tt-form-label__text {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  color: var(--light-transparent-color);
+}
+
+.tt-form-input {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 21px;
+  border: none;
+  background: none;
+  color: var(--light-color);
+  border-bottom: solid var(--light-color);
+  height: 33px;
+
+  &:focus-visible {
+    outline: 1px solid var(--primary-color);
+  }
+}
+
+.tt-textarea {
+  height: 84px;
+  resize: none;
 }
