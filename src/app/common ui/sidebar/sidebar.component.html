@@ -1,8 +1,8 @@
-<img src="/assets/img/svg/logo-small.svg" alt="small-logo" class="ml16 mb20"/>
+<img src="/assets/img/svg/logo-small.svg" alt="small-logo" class="ml16 mb20" />
 <nav class="mb20">
   <ul class="main-menu-list">
     <li *ngFor="let menuItem of menuItems">
-      <a class="menu-item" [routerLink]='[menuItem.link]'>
+      <a class="menu-item" [routerLink]="[menuItem.link]">
         <svg [icon]="menuItem.icon"></svg>
         <span>{{ menuItem.label }}</span>
       </a>
@@ -16,16 +16,16 @@
 }
 <div class="mt20 to-subscribers">
   <a [routerLink]="['/subscribers']" class="to-subscribers-link medium-text"
-  >Все подписчики</a
+    >Все подписчики</a
   >
   <svg icon="arrow" class="to-subscribers-icon"></svg>
 </div>
 <footer class="sidebar__footer">
   @if (me(); as me) {
     @if (me.avatar_url) {
-      <img [src]="me.avatar_url | imgUrl" alt=""/>
+      <img [src]="me.avatar_url | imgUrl" alt="" />
     } @else {
-      <img src="/assets/img/avatar_default.png" alt=""/>
+      <img src="/assets/img/avatar_default.png" alt="" />
     }
     <div class="medium-text username-text">{{ me.username }}</div>
     <a [routerLink]="['settings']" class="settings-btn">

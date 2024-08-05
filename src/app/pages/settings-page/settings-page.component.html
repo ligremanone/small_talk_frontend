@@ -4,20 +4,23 @@
     <div class="two-columns">
       <label class="tt-form-label">
         <span class="tt-form-label__text">Имя</span>
-        <input type="text" class="tt-form-input" formControlName="firstname">
+        <input type="text" class="tt-form-input" formControlName="firstname" />
       </label>
       <label class="tt-form-label">
         <span class="tt-form-label__text">Фамилия</span>
-        <input type="text" class="tt-form-input" formControlName="lastname">
+        <input type="text" class="tt-form-input" formControlName="lastname" />
       </label>
     </div>
     <label class="tt-form-label">
       <span class="tt-form-label__text">Username</span>
-      <input type="text" class="tt-form-input" formControlName="username">
+      <input type="text" class="tt-form-input" formControlName="username" />
     </label>
     <label class="tt-form-label">
       <span class="tt-form-label__text">О себе</span>
-      <textarea class="tt-form-input tt-textarea" formControlName="description"></textarea>
+      <textarea
+        class="tt-form-input tt-textarea"
+        formControlName="description"
+      ></textarea>
     </label>
     <label class="tt-form-label">
       <span class="tt-form-label__text">Аватар</span>
@@ -26,15 +29,12 @@
 
     <label class="tt-form-label">
       <span class="tt-form-label__text">Стэк</span>
-      <input type="text" class="tt-form-input" formControlName="stack">
+      <input type="text" class="tt-form-input" formControlName="stack" />
     </label>
   </div>
   <div>
     <div>
-      <button class="btn" (click)="onSave()" >Сохранить</button>
+      <button class="btn" (click)="onSave()">Сохранить</button>
     </div>
   </div>
 </form>
-
-
-

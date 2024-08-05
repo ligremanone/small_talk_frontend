@@ -2,7 +2,7 @@
   <header class="profile-page__header">
     <app-profile-header [profile]="profile"></app-profile-header>
     <a class="btn to-settings-btn" [routerLink]="['/settings']"
-    >Редактировать
+      >Редактировать
       <svg icon="settings" class="to-settings-icon"></svg>
     </a>
   </header>
@@ -12,7 +12,7 @@
     <div>
       <div class="sub-and-count">
         <h3 class="h6 mb16">Подписчики</h3>
-        <h3 class="h6 mb16 sub-count">{{ count$|async }}</h3>
+        <h3 class="h6 mb16 sub-count">{{ count$ | async }}</h3>
       </div>
 
       <div class="subscribers-wrapper mb32">
@@ -21,7 +21,7 @@
             class="subscriber-avatar-btn"
             [routerLink]="['/profile', subscriber.id]"
           >
-            <img [src]="subscriber.avatar_url | imgUrl" alt=""/>
+            <img [src]="subscriber.avatar_url | imgUrl" alt="" />
           </a>
         }
         <a class="to-subscribers-search" [routerLink]="['/search']"></a>
