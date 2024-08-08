@@ -14,9 +14,10 @@ export class ProfileService {
 
   baseUrl = 'http://127.0.0.1:8000/api/v1/';
   me = signal<Profile | null>(null);
+  filteredProfiles=signal<Profile[]>([])
 
   getTestAccounts() {
-    return this.http.get<Profile[]>(`${this.baseUrl}account/accounts`);
+    return this.http.get<Profile[]>(`${this.baseUrl}account/test-accounts`);
   }
 
   getSubscribersShortList(subsAmount = 3) {
@@ -42,6 +43,14 @@ export class ProfileService {
   uploadAvatar(file: File) {
     const fd = new FormData();
     fd.append('image', file);
-    return this.http.post<Profile>(`${this.baseUrl}account/upload_image`, fd);
+    return this.http.post<Profile>(`${this.baseUrl}account/upload-image`, fd);
+  }
+
+  filterProfiles(params: Record<string, any>) {
+    return this.http.get<Profile[]>(`${this.baseUrl}account/accounts`, {
+      params,
+    }).pipe(
+      tap(res=>this.filteredProfiles.set(res))
+    );
   }
 }
