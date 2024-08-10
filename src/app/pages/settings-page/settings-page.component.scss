@@ -31,3 +31,14 @@
 
 .profile-input {
 }
+
+.profile-form__bottom {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px
+}
+
+.delete-icon, .exit-icon {
+  width: 14px;
+  height: 14px;
+}

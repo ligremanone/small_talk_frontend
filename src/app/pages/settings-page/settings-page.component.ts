@@ -10,17 +10,21 @@ import {
 import {ProfileService} from '../../data/services/profile.service';
 import {firstValueFrom} from 'rxjs';
 import {AvatarUploadComponent} from './avatar-upload/avatar-upload.component';
+import {RouterLink} from "@angular/router";
+import {SvgIconComponent} from "../../common ui/svg-icon/svg-icon.component";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-settings-page',
   standalone: true,
-  imports: [ProfileHeaderComponent, ReactiveFormsModule, AvatarUploadComponent],
+  imports: [ProfileHeaderComponent, ReactiveFormsModule, AvatarUploadComponent, RouterLink, SvgIconComponent],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss',
 })
 export class SettingsPageComponent {
   fb = inject(FormBuilder);
   profileService = inject(ProfileService);
+  authService = inject(AuthService);
   @ViewChild(AvatarUploadComponent) avatarUploader!: AvatarUploadComponent;
   form = this.fb.group({
     firstname: ['', Validators.required],
@@ -59,6 +63,10 @@ export class SettingsPageComponent {
         stack: this.splitStack(this.form.value.stack),
       }),
     );
+  }
+
+  onExit() {
+    return this.authService.logout()
   }
 
   splitStack(stack: string | null | string[] | undefined): string[] {

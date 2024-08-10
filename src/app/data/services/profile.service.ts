@@ -1,8 +1,8 @@
-import { inject, Injectable, signal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Profile } from '../interfaces/profile.interface';
-import { Pageble } from '../interfaces/pageble.interface';
-import { map, tap } from 'rxjs';
+import {inject, Injectable, signal} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Profile} from '../interfaces/profile.interface';
+import {Pageble} from '../interfaces/pageble.interface';
+import {map, tap} from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,11 +10,12 @@ import { map, tap } from 'rxjs';
 export class ProfileService {
   http = inject(HttpClient);
 
-  constructor() {}
+  constructor() {
+  }
 
   baseUrl = 'http://127.0.0.1:8000/api/v1/';
   me = signal<Profile | null>(null);
-  filteredProfiles=signal<Profile[]>([])
+  filteredProfiles = signal<Profile[]>([])
 
   getTestAccounts() {
     return this.http.get<Profile[]>(`${this.baseUrl}account/test-accounts`);
@@ -31,6 +32,8 @@ export class ProfileService {
       .get<Profile>(`${this.baseUrl}account/me`)
       .pipe(tap((res) => this.me.set(res)));
   }
+
+
 
   getAccount(id: string) {
     return this.http.get<Profile>(`${this.baseUrl}account/${id}`);
@@ -50,7 +53,7 @@ export class ProfileService {
     return this.http.get<Profile[]>(`${this.baseUrl}account/accounts`, {
       params,
     }).pipe(
-      tap(res=>this.filteredProfiles.set(res))
+      tap(res => this.filteredProfiles.set(res))
     );
   }
 }

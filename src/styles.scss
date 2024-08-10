@@ -39,7 +39,6 @@ body {
 }
 
 .btn {
-  width: 100%;
   background: var(--primary-color);
   color: var(--dark-color);
   padding: 10px 20px;
@@ -50,6 +49,23 @@ body {
   border-radius: 4px;
   border: 1px solid var(--dark-color);
 }
+
+.btn__cancel, .btn__exit, .btn__delete {
+  background: var(--dark-color);
+  color: var(--light-color);
+  padding: 10px 20px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 24px;
+  cursor: pointer;
+  border-radius: 4px;
+  border: 1px solid var(--light-color);
+
+  &:hover {
+    background: var(--primary-color);
+  }
+}
+
 
 .btn-shadow {
   position: relative;
