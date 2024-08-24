@@ -10,14 +10,20 @@ import {
 import {ProfileService} from '../../data/services/profile.service';
 import {firstValueFrom} from 'rxjs';
 import {AvatarUploadComponent} from './avatar-upload/avatar-upload.component';
-import {RouterLink} from "@angular/router";
-import {SvgIconComponent} from "../../common ui/svg-icon/svg-icon.component";
-import {AuthService} from "../../auth/auth.service";
+import {RouterLink} from '@angular/router';
+import {SvgIconComponent} from '../../common ui/svg-icon/svg-icon.component';
+import {AuthService} from '../../auth/auth.service';
 
 @Component({
   selector: 'app-settings-page',
   standalone: true,
-  imports: [ProfileHeaderComponent, ReactiveFormsModule, AvatarUploadComponent, RouterLink, SvgIconComponent],
+  imports: [
+    ProfileHeaderComponent,
+    ReactiveFormsModule,
+    AvatarUploadComponent,
+    RouterLink,
+    SvgIconComponent,
+  ],
   templateUrl: './settings-page.component.html',
   styleUrl: './settings-page.component.scss',
 })
@@ -57,8 +63,9 @@ export class SettingsPageComponent {
         this.profileService.uploadAvatar(this.avatarUploader.avatar),
       );
     }
-    //@ts-ignore
-    firstValueFrom(this.profileService.pathProfile({
+    firstValueFrom(
+      //@ts-ignore
+      this.profileService.pathProfile({
         ...this.form.value,
         stack: this.splitStack(this.form.value.stack),
       }),
@@ -66,7 +73,11 @@ export class SettingsPageComponent {
   }
 
   onExit() {
-    return this.authService.logout()
+    return this.authService.logout();
+  }
+
+  onDelete() {
+    return this.profileService.deleteAccount().subscribe();
   }
 
   splitStack(stack: string | null | string[] | undefined): string[] {

@@ -4,16 +4,16 @@
     <div class="two-columns">
       <label class="tt-form-label">
         <span class="tt-form-label__text">Имя</span>
-        <input type="text" class="tt-form-input" formControlName="firstname"/>
+        <input type="text" class="tt-form-input" formControlName="firstname" />
       </label>
       <label class="tt-form-label">
         <span class="tt-form-label__text">Фамилия</span>
-        <input type="text" class="tt-form-input" formControlName="lastname"/>
+        <input type="text" class="tt-form-input" formControlName="lastname" />
       </label>
     </div>
     <label class="tt-form-label">
       <span class="tt-form-label__text">Username</span>
-      <input type="text" class="tt-form-input" formControlName="username"/>
+      <input type="text" class="tt-form-input" formControlName="username" />
     </label>
     <label class="tt-form-label">
       <span class="tt-form-label__text">О себе</span>
@@ -29,17 +29,19 @@
 
     <label class="tt-form-label">
       <span class="tt-form-label__text">Стэк</span>
-      <input type="text" class="tt-form-input" formControlName="stack"/>
+      <input type="text" class="tt-form-input" formControlName="stack" />
     </label>
   </div>
   <div class="profile-form__bottom">
     <button class="btn__exit" (click)="onExit()">
       <svg icon="exit" class="exit-icon"></svg>
     </button>
-    <button class="btn__delete">
+    <button class="btn__delete" (click)="onDelete()" [routerLink]="['/login']">
       <svg icon="delete" class="delete-icon"></svg>
     </button>
     <button class="btn__cancel" [routerLink]="['/profile/me']">Отмена</button>
-    <button class="btn" (click)="onSave()" [routerLink]="['/profile/me']">Сохранить</button>
+    <button class="btn" (click)="onSave()" [routerLink]="['/profile/me']">
+      Сохранить
+    </button>
   </div>
 </form>

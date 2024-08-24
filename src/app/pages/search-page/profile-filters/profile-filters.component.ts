@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { AvatarUploadComponent } from '../../settings-page/avatar-upload/avatar-upload.component';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { ProfileService } from '../../../data/services/profile.service';
-import {debounceTime, startWith, switchMap} from 'rxjs';
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import { debounceTime, startWith, switchMap } from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-profile-filters',
@@ -16,6 +16,7 @@ export class ProfileFiltersComponent {
   fb = inject(FormBuilder);
   profileService = inject(ProfileService);
   searchForm = this.fb.group({
+    username: [''],
     firstname: [''],
     lastname: [''],
     stack: [''],
@@ -28,7 +29,7 @@ export class ProfileFiltersComponent {
         switchMap((formValue) => {
           return this.profileService.filterProfiles(formValue);
         }),
-        takeUntilDestroyed()
+        takeUntilDestroyed(),
       )
       .subscribe();
   }
