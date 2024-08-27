@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PostInputComponent } from '../post-input/post-input.component';
 import { PostComponent } from '../post/post.component';
+import { PostService } from '../../../data/services/post.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-post-feed',
@@ -9,4 +11,11 @@ import { PostComponent } from '../post/post.component';
   templateUrl: './post-feed.component.html',
   styleUrl: './post-feed.component.scss',
 })
-export class PostFeedComponent {}
+export class PostFeedComponent {
+  postService = inject(PostService);
+  feed = this.postService.posts;
+
+  constructor() {
+    firstValueFrom(this.postService.fetchPosts()).then(r => this.feed.set(r));
+  }
+}
