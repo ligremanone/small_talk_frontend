@@ -1,5 +1,5 @@
-import {Component, effect, inject, ViewChild} from '@angular/core';
-import {ProfileHeaderComponent} from '../../common ui/profile-header/profile-header.component';
+import { Component, effect, inject, ViewChild } from '@angular/core';
+import { ProfileHeaderComponent } from '../../common ui/profile-header/profile-header.component';
 import {
   FormBuilder,
   FormControl,
@@ -7,12 +7,12 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import {ProfileService} from '../../data/services/profile.service';
-import {firstValueFrom} from 'rxjs';
-import {AvatarUploadComponent} from './avatar-upload/avatar-upload.component';
-import {RouterLink} from '@angular/router';
-import {SvgIconComponent} from '../../common ui/svg-icon/svg-icon.component';
-import {AuthService} from '../../auth/auth.service';
+import { ProfileService } from '../../data/services/profile.service';
+import { firstValueFrom } from 'rxjs';
+import { AvatarUploadComponent } from './avatar-upload/avatar-upload.component';
+import { RouterLink } from '@angular/router';
+import { SvgIconComponent } from '../../common ui/svg-icon/svg-icon.component';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-settings-page',
@@ -35,7 +35,7 @@ export class SettingsPageComponent {
   form = this.fb.group({
     firstname: ['', Validators.required],
     lastname: ['', Validators.required],
-    username: [{value: '', disabled: true}, Validators.required],
+    username: [{ value: '', disabled: true }, Validators.required],
     description: [''],
     stack: [''],
   });
@@ -51,8 +51,7 @@ export class SettingsPageComponent {
     });
   }
 
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
 
   onSave() {
     this.form.markAllAsTouched();
