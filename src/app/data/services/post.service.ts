@@ -1,6 +1,10 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Post, PostCreateDto } from '../interfaces/post.interface';
+import {
+  CommentCreateDto,
+  Post,
+  PostCreateDto,
+} from '../interfaces/post.interface';
 import { switchMap, tap } from 'rxjs';
 
 @Injectable({
@@ -23,6 +27,16 @@ export class PostService {
     return this.#http
       .get<Post[]>(`${this.baseUrl}post/`)
       .pipe(tap((res) => this.posts.set(res)));
+  }
+
+  createComment(payload: CommentCreateDto) {
+    return this.#http.post<Comment>(`${this.baseUrl}comment/`, payload);
+  }
+
+  getAllComments(postId: number) {
+    return this.#http.get<Comment[]>(`${this.baseUrl}comment/`, {
+      params: { post_id: postId },
+    });
   }
 
   constructor() {}

@@ -8,6 +8,7 @@
   --gray-color: #5f646d;
   --dark-hover-color: #161616;
   --light-transparent-color: #faf4f0;
+  --light-border: 1px solid var(--light-color);
 }
 
 *,
@@ -195,4 +196,8 @@ body {
 .tt-textarea {
   height: 84px;
   resize: none;
+}
+
+.hidden-scroll::-webkit-scrollbar {
+  display: none;
 }

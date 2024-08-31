@@ -17,18 +17,22 @@
       <span class="comment-amount">
         <svg icon="comment" class="svg16"></svg>
         @if (post.comments) {
-          <span class="comments-length">{{ post.comments.length }}</span>
+          <span class="comments-length">{{ comments().length }}</span>
         } @else {
           <span class="comments-length">0</span>
         }
       </span>
     </div>
-    <div class="post__comments-wrapper">
-      @for (comment of post.comments; track comment.id) {
+    <div class="post__comments-wrapper hidden-scroll">
+      @for (comment of comments(); track comment.id) {
         <app-comment [comment]="comment"></app-comment>
       }
     </div>
-    <app-post-input [postId]="post.id" [isCommentInput]="true">
+    <app-post-input
+      (created)="onCreated()"
+      [postId]="post.id"
+      [isCommentInput]="true"
+    >
     </app-post-input>
   </main>
 }

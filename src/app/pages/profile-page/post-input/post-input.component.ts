@@ -1,4 +1,12 @@
-import { Component, inject, Renderer2 } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostBinding,
+  inject,
+  input,
+  Output,
+  Renderer2,
+} from '@angular/core';
 import { AvatarCircleComponent } from '../../../common ui/avatar-circle/avatar-circle.component';
 import { ProfileService } from '../../../data/services/profile.service';
 import { NgIf } from '@angular/common';
@@ -15,24 +23,47 @@ import { firstValueFrom } from 'rxjs';
   styleUrl: './post-input.component.scss',
 })
 export class PostInputComponent {
+  isCommentInput = input(false);
+  postId = input<number>(0);
   r2 = inject(Renderer2);
   postService = inject(PostService);
   profile = inject(ProfileService).me;
   postText = '';
+
+  @Output() created = new EventEmitter();
+
+  @HostBinding('class.comment')
+  get isComment() {
+    return this.isCommentInput();
+  }
 
   onTextAreaInput(event: Event) {
     const textarea = event.target as HTMLTextAreaElement;
     this.r2.setStyle(textarea, 'height', 'auto');
     this.r2.setStyle(textarea, 'height', textarea.scrollHeight + 'px');
   }
+
   onCreatePost() {
     if (!this.postText) return;
+    if (this.isCommentInput()) {
+      firstValueFrom(
+        this.postService.createComment({
+          text: this.postText,
+          post_id: this.postId(),
+        }),
+      ).then(() => {
+        this.postText = '';
+        this.created.emit();
+      });
+      return;
+    }
     firstValueFrom(
       this.postService.createPost({
         title: 'Очень интересный пост',
         content: this.postText,
-        author_id: this.profile()!.id,
       }),
-    );
+    ).then(() => {
+      this.postText = '';
+    });
   }
 }
