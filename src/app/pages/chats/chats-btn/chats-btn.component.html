@@ -1,4 +1,21 @@
-<app-avatar-circle></app-avatar-circle>
-<div class="last-message__wrapper">
-  <div class="medium-text">Hello</div>
-</div>
+@if (chat(); as chat) {
+  <app-avatar-circle
+    [avatarUrl]="chat.user.avatar_url"
+    class="size32"
+  ></app-avatar-circle>
+  <div class="last-message__wrapper">
+    <div class="medium-text chat-user">
+      {{ chat.user.firstname }} {{ chat.user.lastname }}
+    </div>
+    <div class="medium-text message-text">
+      @if (chat.message) {
+        {{ chat.message.text }}
+        <span class="message-date">{{
+          chat.message.created_at | date: "dd.MM.YYYY HH:mm "
+        }}</span>
+      } @else {
+        ...
+      }
+    </div>
+  </div>
+}
