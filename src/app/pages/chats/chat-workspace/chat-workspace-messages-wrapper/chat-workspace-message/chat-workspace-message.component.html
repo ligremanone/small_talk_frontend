@@ -1,1 +1,13 @@
-<p>chat-workspace-message works!</p>
+@if (message(); as message) {
+  <app-avatar-circle
+    [avatarUrl]="message.user.avatar_url"
+    class="size32"
+  ></app-avatar-circle>
+  <div class="message-container">
+    <strong class="medium-text mb8"
+      >{{ message.user.lastname }} {{ message.user.firstname }}
+      {{ message.created_at | date: "HH:mm" }}</strong
+    >
+    <div class="message-text medium-text">{{ message.text }}</div>
+  </div>
+}

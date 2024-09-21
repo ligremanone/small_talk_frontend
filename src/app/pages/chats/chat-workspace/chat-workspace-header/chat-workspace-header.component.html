@@ -1,5 +1,9 @@
 @if (profile(); as profile) {
-  <app-avatar-circle class="size32" [avatarUrl]="profile.avatar_url">
-  </app-avatar-circle>
-  <div class="subtitle">{{ profile.firstname }} {{ profile.lastname }}</div>
+  <div class="companion-wrapper">
+    <app-avatar-circle class="size32" [avatarUrl]="profile.avatar_url">
+    </app-avatar-circle>
+    <div class="subtitle">
+      {{ profile.firstname }} {{ profile.lastname }} ({{ profile.username }})
+    </div>
+  </div>
 }
